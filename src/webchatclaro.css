@@ -1,0 +1,166 @@
+:root {
+  --first-color: #ffbc4a;
+  --second-color: #d7321e;
+  --third-color: #ffffff;
+  --animation-duration: 0.3s;
+}
+#blip-chat-notifications {
+  background-color: #f76556;
+  color: #fff;
+  border-radius: 50%;
+  line-height: 21px;
+  font-size: 16px;
+  width: 21px;
+  height: 21px;
+  position: fixed;
+  text-align: center;
+  bottom: 65px;
+  right: 30px;
+  opacity: 0;
+}
+#blip-chat-container {
+  position: fixed;
+  bottom: 40px;
+  right: 80px;
+  z-index: 1000000;
+  display: block !important;
+}
+
+#blip-chat-container #blip-chat-open-iframe {
+  animation: pulsation 2.5s infinite;
+  border-radius: 40%;
+  display: flex;
+  cursor: pointer;
+  position: fixed;
+  max-width: 70px;
+  min-width: 70px;
+  max-height: 70px;
+  min-height: 70px;
+  right: 35px;
+  bottom: 35px;
+  box-shadow: 0 0 0 #b91e05;
+}
+#message-bubble {
+  display: flex;
+  margin-right: 8px;
+  cursor: pointer;
+  animation: BubbleLoad var(--animation-duration) forwards;
+}
+#message-bubble.hide {
+  animation: BubbleUnload var(--animation-duration) forwards;
+}
+#message-bubble > #message {
+  display: flex;
+  padding: 15px;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), 0 2px 32px rgba(0, 0, 0, 0.1);
+  color: var(--third-color);
+  background-color: var(--second-color);
+  border-radius: 5px;
+}
+#message-bubble > #triangle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30px;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+}
+#message-bubble > #triangle::after {
+  content: "";
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  transform: rotate(45deg);
+  background: var(--second-color);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), 0 2px 32px rgba(0, 0, 0, 0.1);
+  right: 28px;
+  border-radius: 5px;
+}
+#blip-chat-close-icon {
+  display: block !important;
+  opacity: 0;
+  background-color: var(--first-color) !important;
+}
+#blip-chat-close-icon.display {
+  animation: CloseIconDisplay var(--animation-duration) forwards;
+}
+#blip-chat-icon > img {
+  transition: var(--animation-duration) !important;
+  position: absolute;
+  height: 100% !important;
+  width: 100% !important;
+  left: 0;
+  top: 0;
+}
+@keyframes CloseIconDisplay {
+  0% {
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(90deg);
+    opacity: 1;
+  }
+}
+@keyframes CloseIconHide {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+@keyframes BubbleLoad {
+  0% {
+    opacity: 0;
+    margin-right: -250px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-right: 8px;
+  }
+}
+@keyframes BubbleUnload {
+  0% {
+    opacity: 1;
+    margin-right: 8px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    margin-right: -250px;
+  }
+}
+@-webkit-keyframes pulsation {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #f3b754;
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+@keyframes pulsation {
+  0% {
+    -moz-box-shadow: 0 0 0 0 #f3b754;
+    box-shadow: 0 0 0 0 #f3b754;
+  }
+  60% {
+    -moz-box-shadow: 0 0 0 10px rgba(203, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(203, 169, 44, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
